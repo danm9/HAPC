@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link rel="stylesheet" href="../css/style.css">
+		<title>HAPC - HLA Associated Polymorphism Counter</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="../cgi-bin/script.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="title">
+				<h1>HAPC - HLA Associated Polymorphism Counter</h1>
+				<p>
+					Given a set of HLA types and associated polymorphisms, return the number of sequences with and without those HLA types which have and do not have the associated polymorphism.
+				</p>
+			</div>
+			<div class="spacer"></div>
+			<form action="../cgi-bin/HAPC.py" method="post" id="mainform">
+				<div class="grid">
+					<div class="col-1-4">
+						<textarea id="hlas" name="hlasname" autofocus required placeholder="Input HLA types and polymorphisms"></textarea>
+					</div>
+					<div class="col-3-4">
+						<textarea id="sequences" name="sequencesname" required placeholder="Input sequences"></textarea>
+					</div>
+				</div>
+			</form>
+			<div class="spacer"></div>
+			<button id="load_sample" class="btn-blank btn-grey round-sm">Load Sample</button>
+			<button id="clear" class="btn-blank btn-red round-sm">Clear</button>
+			<button name="runHAPC" value="submit" class="btn-blank btn-blue round-sm" type="submit" form="mainform">Submit</button>
+		</div>
+	</body>
+</html>

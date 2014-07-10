@@ -1,0 +1,202 @@
+$blue:			#33b5e5;
+$purple:		#aa66cc;
+$green:			#99cc00;
+$orange:		#ffbb33;
+$red:			#ff4444;
+$darkblue:		#0099cc;
+$darkpurple:	#9933cc;
+$darkgreen:		#669900;
+$darkorange:	#ff8800;
+$darkred:		#cc0000;
+
+* {
+	font-family: "Helvetica Neue";
+}
+
+*, *:after, *:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+h1 {
+	font-size: 25px;
+}
+
+p {
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+}
+
+@mixin clearfix() {
+	&:before, &:after {
+		content: " "; // 1
+		display: table; // 2
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin transform($transforms) {
+	-moz-transform: $transforms;
+	-o-transform: $transforms;
+	-ms-transform: $transforms;
+	-webkit-transform: $transforms;
+	transform: $transforms;
+}
+
+@mixin rotate ($deg) {
+	@include transform(rotate(#{$deg}deg));
+}
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+@mixin placeholder {
+	&::-webkit-input-placeholder {@content}
+	&:-moz-placeholder {@content}
+	&::-moz-placeholder {@content}
+	&:-ms-input-placeholder {@content}
+}
+
+@mixin border-radius($values) {
+	-moz-border-radius: $values;
+	-webkit-border-radius: $values;
+	border-radius: $values;
+}
+
+@mixin appearance($value) {
+	-webkit-appearance: $value;
+	-moz-appearance: $value;
+	appearance: $value;
+}
+
+.spacer {
+	margin: 10px 0 0 0;
+}
+
+.word-wrap {
+	word-break: break-all;
+}
+
+.italic {
+	font-style: italic;
+}
+
+@mixin btn($name,$colour) {
+	.btn-#{$name} {
+		padding: 10px 20px;
+		background-color: $colour;
+		color: #FFF;
+		&:hover {
+			background-color: lighten($colour, 10%);
+		}
+		&:active {
+			background-color: $colour;
+			padding: 8px 18px;
+			margin: 4px 4px 4px 4px;
+		}
+	}
+}
+
+@include btn('red', #FF6666);
+@include btn('green', #BADA55);
+@include btn('blue', #33B5E5);
+@include btn('grey', #777);
+
+.round-sm {
+	@include border-radius(2px);
+}
+
+.btn-blank {
+	@include appearance(none);
+	border: none;
+	&:active, &:focus {
+		outline: none;
+	}
+}
+
+.title {
+	h1, p {
+		display: inline-block;
+		margin: 0;
+	}
+	p {
+		margin-left: 30px;
+		font-style: italic;
+	}
+}
+
+span {
+	&.highlight {
+		background-color: yellow;
+	}
+	&.bold {
+		font-weight: bold;	
+	}
+}
+
+#output_table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+	td {
+		border: 1px solid black;
+	}
+}
+
+.container {
+	max-width: 1170px;
+	margin: 0 auto;
+	@include clearfix();
+}
+
+textarea {
+	padding: 20px;
+	font-family: monospace;
+	display: block;
+	margin: 0 auto;
+	border: none;
+	width: 100%;
+	min-height: 200px;
+	background-color: #E9E9E9;
+	@include border-radius(0 20px 0 20px);
+	@include transition(all ease-out 0.1s);
+	&:focus {
+		outline: none;
+		background-color: lighten($green,20%);
+	@include transition(all ease-out 0.1s);
+	}
+}
+
+// GRID SYSTEM ****************************
+
+[class*='col-'] {
+	float: left;
+	padding-right: 20px;
+}
+
+.grid {
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	@include clearfix();
+}
+
+@mixin col($x,$y) {
+	.col-#{$x}-#{$y} {
+		width: percentage($x / $y);
+	}
+}
+
+@for $i from 1 through 12 {
+	@for $j from $i through 12 {
+		@include col($i, $j);
+	}
+}
+
+// ***************************************
