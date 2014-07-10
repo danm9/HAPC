@@ -9,10 +9,10 @@
 h1 {
   font-size: 25px; }
 
-p {
+div, p {
   padding: 0;
   margin: 0;
-  font-size: 12px; }
+  font-size: 14px; }
 
 .spacer {
   margin: 10px 0 0 0; }
@@ -24,6 +24,7 @@ p {
   font-style: italic; }
 
 .btn-red {
+  font-size: 14px;
   padding: 10px 20px;
   background-color: #ff6666;
   color: #FFF; }
@@ -35,6 +36,7 @@ p {
     margin: 4px 4px 4px 4px; }
 
 .btn-green {
+  font-size: 14px;
   padding: 10px 20px;
   background-color: #bada55;
   color: #FFF; }
@@ -46,6 +48,7 @@ p {
     margin: 4px 4px 4px 4px; }
 
 .btn-blue {
+  font-size: 14px;
   padding: 10px 20px;
   background-color: #33b5e5;
   color: #FFF; }
@@ -57,6 +60,7 @@ p {
     margin: 4px 4px 4px 4px; }
 
 .btn-grey {
+  font-size: 14px;
   padding: 10px 20px;
   background-color: #777777;
   color: #FFF; }
@@ -85,7 +89,8 @@ p {
   margin: 0; }
 .title p {
   margin-left: 30px;
-  font-style: italic; }
+  font-style: italic;
+  font-size: 14px; }
 
 span.highlight {
   background-color: yellow; }
@@ -109,6 +114,7 @@ span.bold {
     clear: both; }
 
 textarea {
+  font-size: 14px;
   padding: 20px;
   font-family: monospace;
   display: block;
@@ -128,9 +134,19 @@ textarea {
     -webkit-transition: all ease-out 0.1s;
     transition: all ease-out 0.1s; }
 
+.usage h1 {
+  margin-bottom: 10px;
+  margin-top: 0; }
+
 [class*='col-'] {
   float: left;
   padding-right: 20px; }
+
+.row:before, .row:after {
+  content: " ";
+  display: table; }
+.row:after {
+  clear: both; }
 
 .grid {
   width: 100%;

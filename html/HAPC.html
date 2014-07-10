@@ -12,8 +12,31 @@
 			<div class="title">
 				<h1>HAPC - HLA Associated Polymorphism Counter</h1>
 				<p>
-					Given a set of HLA types and associated polymorphisms, return the number of sequences with and without those HLA types which have and do not have the associated polymorphism.
+					Given a set of HLA types and associated polymorphisms, 
+					return the number of sequences with and without those
+					HLA types which have and do not have the associated polymorphism.
 				</p>
+			</div>
+			<div class="spacer"></div>
+			<div class="row usage">
+				<h1>Usage</h1>
+				<div class="col-1-2">
+					In the left-hand box, enter your data in columns. Where the first column
+					is the HLA type you want to examine, and the second column is the position
+					in each sequence to examine concatenated with the amino acid to count. These
+					columns must be separated by a tab. For example: if the entry was 
+					<span class="bold">B*51:01 {tab} 25P</span> the program would look at every
+					sequence and count how many people have B*51:01, have a P at position 25, have both,
+					and have neither.
+				</div>
+				<div class="col-1-2">
+					In the right-hand box, the fist column <span class="bold">must</span> be a unique identifier 
+					for that patient/sequence. The next 6 columns should contain HLA type information such as 
+					"B*51:01" or "B5101". The order does not matter. The last column should be the <span class="bold">nucleotide</span>
+					sequence of that patient's HIV sequence. Translation is done in-house, and will attempt to resolve mixture nucleotides
+					into amino acids if all possible codons resolve to the same amino acid. It will otherwise be unknown and cannot be 
+					included in calculations.
+				</div>
 			</div>
 			<div class="spacer"></div>
 			<form action="../cgi-bin/HAPC.py" method="post" id="mainform">

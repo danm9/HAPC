@@ -23,10 +23,10 @@ h1 {
 	font-size: 25px;
 }
 
-p {
+div, p {
 	padding: 0;
 	margin: 0;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 @mixin clearfix() {
@@ -89,6 +89,7 @@ p {
 
 @mixin btn($name,$colour) {
 	.btn-#{$name} {
+		font-size: 14px;
 		padding: 10px 20px;
 		background-color: $colour;
 		color: #FFF;
@@ -128,6 +129,7 @@ p {
 	p {
 		margin-left: 30px;
 		font-style: italic;
+		font-size: 14px;
 	}
 }
 
@@ -156,6 +158,7 @@ span {
 }
 
 textarea {
+	font-size: 14px;
 	padding: 20px;
 	font-family: monospace;
 	display: block;
@@ -173,11 +176,22 @@ textarea {
 	}
 }
 
+.usage {
+	h1 {
+		margin-bottom: 10px;
+		margin-top: 0;
+	}
+}
+
 // GRID SYSTEM ****************************
 
 [class*='col-'] {
 	float: left;
 	padding-right: 20px;
+}
+
+.row {
+	@include clearfix();
 }
 
 .grid {
