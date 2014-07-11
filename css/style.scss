@@ -1,3 +1,6 @@
+@import 'myframework/mixins';
+@import 'myframework/grid';
+
 $blue:			#33b5e5;
 $purple:		#aa66cc;
 $green:			#99cc00;
@@ -29,52 +32,6 @@ div, p {
 	font-size: 14px;
 }
 
-@mixin clearfix() {
-	&:before, &:after {
-		content: " "; // 1
-		display: table; // 2
-	}
-	&:after {
-		clear: both;
-	}
-}
-
-@mixin transform($transforms) {
-	-moz-transform: $transforms;
-	-o-transform: $transforms;
-	-ms-transform: $transforms;
-	-webkit-transform: $transforms;
-	transform: $transforms;
-}
-
-@mixin rotate ($deg) {
-	@include transform(rotate(#{$deg}deg));
-}
-
-@mixin transition($transition...) {
-  -webkit-transition: $transition;
-  transition: $transition;
-}
-
-@mixin placeholder {
-	&::-webkit-input-placeholder {@content}
-	&:-moz-placeholder {@content}
-	&::-moz-placeholder {@content}
-	&:-ms-input-placeholder {@content}
-}
-
-@mixin border-radius($values) {
-	-moz-border-radius: $values;
-	-webkit-border-radius: $values;
-	border-radius: $values;
-}
-
-@mixin appearance($value) {
-	-webkit-appearance: $value;
-	-moz-appearance: $value;
-	appearance: $value;
-}
-
 .spacer {
 	margin: 10px 0 0 0;
 }
@@ -85,23 +42,6 @@ div, p {
 
 .italic {
 	font-style: italic;
-}
-
-@mixin btn($name,$colour) {
-	.btn-#{$name} {
-		font-size: 14px;
-		padding: 10px 20px;
-		background-color: $colour;
-		color: #FFF;
-		&:hover {
-			background-color: lighten($colour, 10%);
-		}
-		&:active {
-			background-color: $colour;
-			padding: 8px 18px;
-			margin: 4px 4px 4px 4px;
-		}
-	}
 }
 
 @include btn('red', #FF6666);
@@ -182,35 +122,3 @@ textarea {
 		margin-top: 0;
 	}
 }
-
-// GRID SYSTEM ****************************
-
-[class*='col-'] {
-	float: left;
-	padding-right: 20px;
-}
-
-.row {
-	@include clearfix();
-}
-
-.grid {
-	width: 100%;
-	margin: 0 auto;
-	overflow: hidden;
-	@include clearfix();
-}
-
-@mixin col($x,$y) {
-	.col-#{$x}-#{$y} {
-		width: percentage($x / $y);
-	}
-}
-
-@for $i from 1 through 12 {
-	@for $j from $i through 12 {
-		@include col($i, $j);
-	}
-}
-
-// ***************************************
