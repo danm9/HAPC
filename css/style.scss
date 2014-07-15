@@ -114,6 +114,9 @@ textarea {
 		background-color: lighten($blue,30%);
 	@include transition(all ease-out 0.1s);
 	}
+	&:hover + .clearbutton {
+		display: block;
+	}
 }
 
 .usage {
@@ -121,4 +124,23 @@ textarea {
 		margin-bottom: 10px;
 		margin-top: 0;
 	}
+}
+
+.clearbutton {
+	&:hover {
+		display: block;
+		color: white;
+		background: $red;
+		cursor: pointer;
+	}
+	&:active {
+		background: $darkred;
+	}
+	display: none;
+	position: absolute;
+	@include border-radius(2px);
+	padding: 5px 8px;
+	top: 0;
+	right: 40px;
+	background: lighten($red,20%);
 }

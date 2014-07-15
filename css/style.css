@@ -1,6 +1,7 @@
 [class*='col-'] {
   float: left;
-  padding-right: 20px; }
+  padding-right: 20px;
+  position: relative; }
 
 .row:before, .row:after {
   content: " ";
@@ -387,7 +388,27 @@ textarea {
     background-color: #bbe6f6;
     -webkit-transition: all ease-out 0.1s;
     transition: all ease-out 0.1s; }
+  textarea:hover + .clearbutton {
+    display: block; }
 
 .usage h1 {
   margin-bottom: 10px;
   margin-top: 0; }
+
+.clearbutton {
+  display: none;
+  position: absolute;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  padding: 5px 8px;
+  top: 0;
+  right: 40px;
+  background: #ffaaaa; }
+  .clearbutton:hover {
+    display: block;
+    color: white;
+    background: #ff4444;
+    cursor: pointer; }
+  .clearbutton:active {
+    background: #cc0000; }
