@@ -384,7 +384,7 @@ textarea {
   transition: all ease-out 0.1s; }
   textarea:focus {
     outline: none;
-    background-color: #ccff33;
+    background-color: #bbe6f6;
     -webkit-transition: all ease-out 0.1s;
     transition: all ease-out 0.1s; }
 

@@ -111,7 +111,7 @@ textarea {
 	@include transition(all ease-out 0.1s);
 	&:focus {
 		outline: none;
-		background-color: lighten($green,20%);
+		background-color: lighten($blue,30%);
 	@include transition(all ease-out 0.1s);
 	}
 }

@@ -1,5 +1,6 @@
 #!/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/python
-import cgi, sys
+import cgi, sys, math
+from decimal import Decimal
 
 form = cgi.FieldStorage()
 hlas = form.getvalue("hlasname")
@@ -216,6 +217,8 @@ if (runHAPC is not None):
 		<td>HLA- AA+</td>
 		<td>HLA- AA-</td>
 		<td>total</td>
+		<td>lnOR</td>
+		<td>p</td>
 	</tr>
 	"""
 	for interest in hlas:
@@ -223,6 +226,24 @@ if (runHAPC is not None):
 		pos = interest[1][:-1]
 		mut = interest[1][-1]
 		count = checkSeqs(interest, d, N)
+		try:
+			abfact = math.factorial(count[0]+count[1])
+			cdfact = math.factorial(count[2]+count[3])
+			acfact = math.factorial(count[0]+count[2])
+			bdfact = math.factorial(count[1]+count[3])
+			afact = math.factorial(count[0])
+			bfact = math.factorial(count[1])
+			cfact = math.factorial(count[2])
+			dfact = math.factorial(count[3])
+			nfact = math.factorial(count[4])
+			logp = math.log(abfact) + math.log(cdfact) + math.log(acfact) + math.log(bdfact) - math.log((afact * bfact * cfact * dfact * nfact))
+			pval = round(math.exp(logp),8)
+		except ZeroDivisionError:
+			pval = "Indeterminate"
+		try:
+			lnOR = round(math.log(float(count[0]*count[3])/(count[2]*count[3])),8)
+		except (ZeroDivisionError, ValueError) as e:
+			lnOR = "Indeterminate"
 		print """
 		<tr>
 			<td>{}</td>
@@ -233,7 +254,8 @@ if (runHAPC is not None):
 			<td>{}</td>
 			<td>{}</td>
 			<td>{}</td>
+			<td>{}</td>
+			<td>{:.8f}</td>
 		</tr>
-		""".format(pos, mut, hla, count[0], count[1], count[2], count[3], count[4])
+		""".format(pos, mut, hla, count[0], count[1], count[2], count[3], count[4], lnOR, pval)
 	print "</table></div></body></html>"
-
