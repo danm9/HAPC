@@ -217,7 +217,7 @@ if (runHAPC is not None):
 		<td>HLA- AA+</td>
 		<td>HLA- AA-</td>
 		<td>total</td>
-		<td>lnOR</td>
+		<td>Odds Ratio</td>
 		<td>p</td>
 	</tr>
 	"""
@@ -241,9 +241,11 @@ if (runHAPC is not None):
 		except ZeroDivisionError:
 			pval = "Indeterminate"
 		try:
-			lnOR = round(math.log(float(count[0]*count[3])/(count[2]*count[3])),8)
-		except (ZeroDivisionError, ValueError) as e:
-			lnOR = "Indeterminate"
+			num = float(count[0]) * count[3]
+			den = float(count[1]) * count[2]
+			OR = round(num / den, 8)
+		except ZeroDivisionError:
+			OR = "Indeterminate"
 		print """
 		<tr>
 			<td>{}</td>
@@ -257,5 +259,5 @@ if (runHAPC is not None):
 			<td>{}</td>
 			<td>{:.8f}</td>
 		</tr>
-		""".format(pos, mut, hla, count[0], count[1], count[2], count[3], count[4], lnOR, pval)
+		""".format(pos, mut, hla, count[0], count[1], count[2], count[3], count[4], OR, pval)
 	print "</table></div></body></html>"
