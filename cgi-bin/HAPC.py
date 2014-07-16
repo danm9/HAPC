@@ -218,7 +218,7 @@ if (runHAPC is not None):
 		<td>HLA- AA-</td>
 		<td>total</td>
 		<td>Odds Ratio</td>
-		<td>p</td>
+		<td>p Value</td>
 	</tr>
 	"""
 	for interest in hlas:
