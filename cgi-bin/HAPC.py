@@ -158,14 +158,18 @@ def checkSeqs(interest, d, N):
 	for patient in d.keys():
 		# If there is no HLA data for this HLA type (A,B, or C)
 		if (len(d[patient][hla[0].upper()]) == 0):
-			return ["No data for hla {}".format(hla[0].upper())]*5
+			N -= 1
+			continue
+			#return ["No data for hla {}".format(hla[0].upper())]*5
 		else:
 			pathlas = d[patient][hla[0].upper()]
 		# Try to look at the position in the translated sequence, making sure not to go out of range
 		try:
 			comparebase = d[patient]['seq'][pos-1]
 		except IndexError:
-			return "Error: position out of range in sequence in patient {}".format(patient)
+			N -= 1
+			continue
+			#return "Error: position out of range in sequence in patient {}".format(patient)
 		# There are three situations where a patient will not be included in the analysis
 		#
 		# 1. The amino acid at the position of interest is unknown
@@ -226,6 +230,7 @@ if (runHAPC is not None):
 		pos = interest[1][:-1]
 		mut = interest[1][-1]
 		count = checkSeqs(interest, d, N)
+		#print "count: {}".format(count)
 		try:
 			abfact = math.factorial(count[0]+count[1])
 			cdfact = math.factorial(count[2]+count[3])
@@ -257,7 +262,10 @@ if (runHAPC is not None):
 			<td>{}</td>
 			<td>{}</td>
 			<td>{}</td>
-			<td>{:.8f}</td>
-		</tr>
-		""".format(pos, mut, hla, count[0], count[1], count[2], count[3], count[4], OR, pval)
+		""".format(pos, mut, hla, count[0], count[1], count[2], count[3], count[4], OR)
+		try:
+			print "<td>{:.8f}</td>".format(pval)
+		except ValueError:
+			print "<td>{}</td>".format(pval)
+		print "</tr>"
 	print "</table></div></body></html>"
